@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 120" fill="none">
+  <title>浅浅静听 · 小狗听歌</title>
+  <g id="dog" fill="#184e3f">
+    <path d="M8 80C4 69 17 64 27 59C35 55 36 43 43 30C54 10 78 5 100 12C122 19 130 38 134 56C135 62 140 66 143 73C151 90 145 105 134 109C123 113 113 106 113 96C113 87 118 75 120 63C125 41 109 24 91 21C71 18 57 28 51 44C47 55 47 68 43 80C39 93 32 98 23 97C15 96 10 90 8 84Z"/>
+    <g stroke="#184e3f" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" fill="none">
+      <path d="M54 64Q60 71 67 65M96 68Q102 75 109 69"/>
+      <path d="M82 81V87C82 96 70 98 65 90M82 87C82 96 95 100 101 92"/>
+    </g>
+    <ellipse cx="82" cy="78" rx="6.5" ry="4.5"/>
+  </g>
+</svg>
