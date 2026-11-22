@@ -172,8 +172,10 @@
   .player .timeline input[type=range]::-webkit-slider-thumb { width: 11px; height: 11px; opacity: 1; }
   .player .transport { gap: 0; margin: 0; }
   .player .transport .icon-btn { width: 38px; height: 38px; }
-  .player .transport .icon-btn:first-child,
   .player .transport .icon-btn:last-child { display: none; }
+  /* 播放模式（顺序循环 / 单曲循环 / 随机播放）在手机上保留，随时可切 */
+  .player .transport #mode { display: inline-flex; width: 34px; height: 38px; }
+  .player .transport #mode.active { color: #184e3f; }
   .player .play-button { width: 38px; height: 38px; }
 
   .player .player-right { margin-left: 0; gap: 0; }

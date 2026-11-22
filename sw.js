@@ -2,7 +2,7 @@
    只缓存应用外壳与内置素材；用户导入的音乐保存在 IndexedDB 中，不经过这里。 */
 'use strict';
 
-const CACHE = 'qianqian-mobile-v3';
+const CACHE = 'qianqian-mobile-v4';
 const CORE = [
   './',
   './index.html',

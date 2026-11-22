@@ -150,11 +150,12 @@
     var html =
       '<div class="help-copy">' +
       '<p><strong>把自己手机里的音乐放进来</strong><br>点列表上方的「导入音乐」，一次可以多选手机里的 MP3（也支持 M4A、FLAC、WAV）。歌曲会复制到本机浏览器存储中，原文件不会被改动。</p>' +
+      '<p><strong>单曲循环</strong><br>底部播放条最左边那个按钮，点一下依次切换「顺序循环 → 单曲循环 → 随机播放」，切换时会弹一句提示。想要整张歌单反复放就停在顺序循环，只想反复听一首就切到单曲循环。</p>' +
       '<p><strong>建自己的歌单</strong><br>点底部「歌单」，在抽屉里按「＋」新建；长按不了就用每首歌右侧「···」里的「加入歌单」。</p>' +
       '<p><strong>装到主屏幕，像 App 一样用</strong><br>Chrome：右上角菜单 →「添加到主屏幕」；Safari：分享 →「添加到主屏幕」。装好后可以全屏打开，断网也能听。</p>' +
       '<p><strong>资料放在哪</strong><br>歌曲和歌单只存在这台手机的这个浏览器里。换浏览器、清理站点数据、隐私模式都会丢，请保留原始 MP3。</p>' +
       '<p><strong>关于广告</strong><br>这个播放器不联网取歌、不上传音频、没有广告位；只有你主动点「在线搜索歌词/封面」时才会发送歌名与歌手。</p>' +
-      '<p style="opacity:.55;font-size:12px;margin-top:14px">手机版 v2 · 已支持一次多选导入</p>' +
+      '<p style="opacity:.55;font-size:12px;margin-top:14px">手机版 v3 · 一次多选导入 + 单曲循环</p>' +
       '</div>';
     if (typeof showModal === 'function') showModal('在手机上使用浅浅静听', html, null, false);
   }
