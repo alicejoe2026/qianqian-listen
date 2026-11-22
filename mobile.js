@@ -154,6 +154,7 @@
       '<p><strong>装到主屏幕，像 App 一样用</strong><br>Chrome：右上角菜单 →「添加到主屏幕」；Safari：分享 →「添加到主屏幕」。装好后可以全屏打开，断网也能听。</p>' +
       '<p><strong>资料放在哪</strong><br>歌曲和歌单只存在这台手机的这个浏览器里。换浏览器、清理站点数据、隐私模式都会丢，请保留原始 MP3。</p>' +
       '<p><strong>关于广告</strong><br>这个播放器不联网取歌、不上传音频、没有广告位；只有你主动点「在线搜索歌词/封面」时才会发送歌名与歌手。</p>' +
+      '<p style="opacity:.55;font-size:12px;margin-top:14px">手机版 v2 · 已支持一次多选导入</p>' +
       '</div>';
     if (typeof showModal === 'function') showModal('在手机上使用浅浅静听', html, null, false);
   }
@@ -169,12 +170,53 @@
     });
   } catch (e) {}
 
+  /* ---------------- 导入：让手机上一次能选多首 ---------------- */
+  /* 手机上若 accept 限定为 audio/*，安卓会打开“音频选择器”，那个界面只能选中 1 首。
+     去掉 accept 后走通用文件管理器，可以长按多选、一次导入一整批。 */
+  function relaxFilePicker() {
+    if (!isMobile()) return;
+    var fi = $('#fileInput');
+    if (fi && fi.hasAttribute('accept')) {
+      fi.removeAttribute('accept');
+      fi.removeAttribute('capture');
+    }
+  }
+  relaxFilePicker();
+  try { mq.addEventListener('change', relaxFilePicker); } catch (e) {}
+
+  /* 从桌面图标打开（独立窗口）时，部分手机会拦掉脚本触发的 click()，
+     导致点「导入音乐」毫无反应。把文件框直接铺在按钮上，点击按钮＝真实点击控件。 */
+  function mountPickerOnButton() {
+    var btn = $('#importButton');
+    var fi = $('#fileInput');
+    if (!btn || !fi || !isMobile()) return;
+    if (fi.getAttribute('data-qq-mount') === '1') return;
+    fi.setAttribute('data-qq-mount', '1');
+    fi.removeAttribute('hidden');
+    fi.removeAttribute('accept');
+    btn.style.position = 'relative';
+    btn.style.overflow = 'hidden';
+    fi.style.cssText = 'position:absolute;left:-2px;top:-2px;width:calc(100% + 4px);' +
+      'height:calc(100% + 4px);opacity:0;border:0;padding:0;margin:0;font-size:16px;cursor:pointer;';
+    btn.appendChild(fi);
+    btn.onclick = null;
+  }
+  mountPickerOnButton();
+  try { mq.addEventListener('change', mountPickerOnButton); } catch (e) {}
+
+  /* 申请持久化存储，降低浏览器自动清理站点数据导致歌曲消失的概率 */
+  try {
+    if (navigator.storage && navigator.storage.persist) {
+      navigator.storage.persist().catch(function () {});
+    }
+  } catch (e) {}
+
   /* ---------------- 首次打开提示 ---------------- */
   try {
     if (isMobile() && !localStorage.getItem('qq-mobile-hint-v1')) {
       localStorage.setItem('qq-mobile-hint-v1', '1');
       setTimeout(function () {
-        if (typeof toast === 'function') toast('点列表上方「导入音乐」，把手机里的 MP3 放进来');
+        if (typeof toast === 'function') toast('点「导入音乐」，一次可以多选手机里的 MP3');
       }, 1200);
     }
   } catch (e) {}
